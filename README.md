@@ -22,7 +22,7 @@ devtools::install_github("WangX-Lab/PreCanCell")
 ```
 ## Data preprocessing (select matched genes and [0,1]-scaled gene expression values) --------------library(PreCanCell)
 path <- system.file("extdata", "example.txt", package = "PreCanCell", mustWork = TRUE)
-input <- read.table(path, stringsAsFactors = FALSE, header = TRUE, check.names = FALSE, sep = "\t", quote = "", row.names = 1)
+input <- read.table(path, stringsAsFactors = FALSE, header = TRUE, check.names = FALSE, sep = "\t", row.names = 1)
 testdata <- PreCanCell_data(input)
 ```
 
