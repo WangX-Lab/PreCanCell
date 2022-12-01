@@ -20,14 +20,15 @@ devtools::install_github("WangX-Lab/PreCanCell")
 
 # Examples
 ```
-## Data preprocessing (select matched genes and [0,1]-scaled gene expression values) --------------library(PreCanCell)
+## Data preprocessing (select matched genes and [0,1]-scaled gene expression values) --------------
+library(PreCanCell)
 path <- system.file("extdata", "example.txt", package = "PreCanCell", mustWork = TRUE)
 input <- read.table(path, stringsAsFactors = FALSE, header = TRUE, check.names = FALSE, sep = "\t", row.names = 1)
 testdata <- PreCanCell_data(input)
 ```
 
 ```
-## Prediction of malignant and non-malignant cells ---------------------------------------------------------------------------
+## Prediction of malignant and non-malignant cells -----------------------------------------------
 library(PreCanCell)
 results <- PreCanCell_classifier(testdata, 2)
 ```
