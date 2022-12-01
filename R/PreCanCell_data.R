@@ -18,7 +18,7 @@
 PreCanCell_data <- function(input) {
 
   ## Check arguments
-  if (missing(input) || class(input) != c("matrix","data.frame") || dim(input)[2] < 5)
+  if (missing(input) || !class(input) %in% c("matrix", "data.frame") || dim(input)[2] < 5)
     stop("'input' data is missing or incorrect")
 
   ## Filter and min-max scaling
