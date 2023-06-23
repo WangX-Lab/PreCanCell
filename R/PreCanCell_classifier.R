@@ -39,9 +39,6 @@ PreCanCell_classifier <- function(testdata, cores) {
     foreach(i = seq_len(length(TrainDataList)), .combine = "cbind", .packages = "fastknn", .export = c("TrainDataList","testdata"), .errorhandling = "stop") %dopar% {
       TrainData <- TrainDataList[[i]]
       TrainData <- TrainData[,c(1, match(colnames(testdata), colnames(TrainData)))]
-      TrainData[-1] <- apply(TrainData[-1], 2, function(x) {
-        (x - min(x)) / (max(x) - min(x))
-      })
       pred_knn <- fastknn(data.matrix(TrainData[,-1, drop = FALSE]),as.factor(TrainData[,1]), data.matrix(testdata), k = 5)
       label <- pred_knn$class
     })
