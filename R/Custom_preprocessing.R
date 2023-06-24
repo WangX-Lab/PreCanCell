@@ -22,7 +22,7 @@ Custom_preprocessing <- function(counts, annotation, project = "PanCanCell", min
   data <- NormalizeData(object = data, normalization.method = normalization.method, scale.factor = scale.factor, verbose = verbose)
   data <- GetAssayData(data, slot="data")
   data <- data[rownames(data) %in% feature$Symbol,]
-  data <- data[,which(colSums(data)!=0)]
+  data <- data[,which(Matrix::colSums(data)!=0)]
   data <- apply(t(as.data.frame(data)), 2, function(x) {
     (x - min(x)) / (max(x) - min(x))
   })
