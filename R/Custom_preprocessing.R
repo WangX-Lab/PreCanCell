@@ -18,7 +18,7 @@ Custom_preprocessing <- function(counts, annotation, project = "PanCanCell", min
                                  verbose = TRUE) {
   data("feature", package = "PreCanCell") # loading feature datasets
   data <- CreateSeuratObject(counts = counts, project = project, min.cells = min.cells, min.features = min.features)
-  data <- NormalizeData(object = counts, normalization.method = normalization.method, scale.factor = scale.factor, verbose = verbose)
+  data <- NormalizeData(object = data, normalization.method = normalization.method, scale.factor = scale.factor, verbose = verbose)
   data <- GetAssayData(data, slot="data")
   data <- data[rownames(data) %in% feature[,1],]
   data <- data[,which(colSums(data)!=0)]
