@@ -1,0 +1,126 @@
+---
+title: "Introduction to the PreCanCell package"
+author: "Tao Yang"
+date: "`r Sys.Date()`"
+output: 
+  BiocStyle::html_document:
+   toc: yes
+   toc_float: true      
+   collapse: true     
+vignette: >
+  %\VignetteIndexEntry{PreCanCell_introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warnings = FALSE,
+  messages = FALSE,
+  comment = "#>"
+)
+```
+
+# Overview
+
+`PreCanCell` is a simple and effective ensemble learning algorithm for predicting cancer and non-cancer cells from single-cell transcriptomes.
+
+`PreCanCell` first identified the differentially expressed genes (DEGs) between malignant and non-malignant cells commonly in five common cancer-associated single-cell transcriptome datasets. With each of the five datasets as the training set and the DEGs as the features, a single cell is classified as malignant or non-malignant by *k*-NN (*k* = 5). Finally, the single cell is classified by the majority vote of the five *k*-NN classification results.
+
+```{r, echo = FALSE}
+knitr::include_graphics("PreCanCell_overview.png")
+```
+
+# Installation
+
+To install `PreCanCell` , first install the `fastknn` package, which can be installed as follows:
+
+```{r, eval=FALSE}
+if (!requireNamespace("devtools", quietly = TRUE))
+    install.packages("devtools")
+devtools::install_github("davpinto/fastknn")
+```
+
+Finally, users can install the released version of `PreCanCell` with:
+
+```{r, eval=FALSE}
+devtools::install_github("WangX-Lab/PreCanCell")
+```
+
+# Basic usage
+
+We begin by illustrating basic usage of `PreCanCell` on some example data bundled with the package. First, load the relevant libraries:
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(PreCanCell)
+```
+
+We use an example consisting of 300 genes and 100 cells:
+
+```{r, results='hide'}
+path <- system.file("extdata", "example.txt", package = "PreCanCell", mustWork = TRUE)
+input <- read.table(path, stringsAsFactors = FALSE, header = TRUE, check.names = FALSE, sep = "\t", row.names = 1)
+```
+
+```{r}
+print(input[1:5,1:5])
+```
+
+We then using the `PreCanCell_data()` function for data preprocessing that will select matched genes and scale gene expression values.
+
+```{r}
+testdata <- PreCanCell_data(input)
+```
+
+This returns a matrix contains the expression values of 259 matched genes in 100 cells.
+
+```{r}
+print(testdata[1:5,1:5])
+```
+
+Now that the data is prepared, running `PreCanCell_classifier()` function to predict malignant and non-malignant cells. `cores` represents the number of cores to use for parallel execution.
+
+```{r}
+results <- PreCanCell_classifier(testdata, cores = 2)
+```
+
+This result contains 4 columns:
+
+-   **Sample:** cell id
+-   **freq_cancer:** the ratio of the number of classifiers predicting that the cell is a cancer cell to 5 classifiers
+-   **freq_non_cancer:** the ratio of the number of classifiers predicting that the cell is a non-cancer cell to 5 classifiers
+-   **pred_labels:** the predicted label for each cell
+
+```{r}
+print(head(results))
+```
+
+# Advanced usage
+
+`PreCanCell` also provides functions that allow users to add additional training datasets to perform prediction. Users can provide several scRNA-seq count data as custom training datasets. **Note: An even number of training sets is highly recommended.** Users are also required to provide annotated information for known malignant and non-malignant cell labels.
+
+The first is data preprocessing:
+
+```{r, eval=FALSE}
+data1 <- Custom_preprocessing(counts, annotation)
+```
+
+Construction list of training datasets:
+
+```{r, eval=FALSE}
+CustomDataList <- list(data1, data2, data3...)
+```
+
+Applying newly trained models for cell classification:
+
+```{r, eval=FALSE}
+results <- Custom_classifier(testdata, cores, CustomDataList)
+```
+
+# Session information
+
+```{r}
+sessionInfo()
+```
+
