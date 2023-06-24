@@ -23,6 +23,10 @@ Custom_preprocessing <- function(counts, annotation, project = "PanCanCell", min
   data <- GetAssayData(data, slot="data")
   data <- data[rownames(data) %in% feature$Symbol,]
   data <- data[,which(Matrix::colSums(data)!=0)]
+
+  if (dim(data)[1]!=259)
+    stop("There are not enough feature genes")
+  
   data <- apply(t(as.data.frame(data)), 2, function(x) {
     (x - min(x)) / (max(x) - min(x))
   })
