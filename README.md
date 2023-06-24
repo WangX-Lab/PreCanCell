@@ -96,7 +96,7 @@ head(results)
 
 
 # Vignettes
-[Predicting malignant and non-malignant cells from single-cell transcriptomes](./vignettes/PreCanCell_introduction.Rmd)
+[Predicting malignant and non-malignant cells from single-cell transcriptomes](https://wangx-lab.github.io/PreCanCell/)
 
 &nbsp;
 &nbsp;
