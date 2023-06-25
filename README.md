@@ -1,16 +1,9 @@
 # PreCanCell
 
-A simple and effective ensemble learning algorithm for predicting cancer and non-cancer cells from single-cell transcriptomes.
+`PreCanCell` is a simple and effective ensemble learning algorithm for predicting cancer and non-cancer cells from single-cell transcriptomes. `PreCanCell` first identified the differentially expressed genes (DEGs) between malignant and non-malignant cells commonly in five common cancer-associated single-cell transcriptome datasets. With each of the five datasets as the training set and the DEGs as the features, a single cell is classified as malignant or non-malignant by *k*-NN (*k* = 5). Finally, the single cell is classified by the majority vote of the five *k*-NN classification results.
 
 <img width="1022" alt="image" src="./docs/PreCanCell_overview.png">
 
-&nbsp;
-&nbsp;
-# Description
-
-PreCanCell first identified the differentially expressed genes (DEGs) between malignant and non-malignant cells commonly in five common cancer-associated single-cell transcriptome datasets. With each of the five datasets as the training set and the DEGs as the features, a single cell is classified as malignant or non-malignant by *k*-NN (*k* = 5). Finally, the single cell is classified by the majority vote of the five *k*-NN classification results.
-
-&nbsp;
 &nbsp;
 # Details
 
@@ -19,7 +12,6 @@ PreCanCell first identified the differentially expressed genes (DEGs) between ma
   + "testdata" is a output matrix of the function `PreCanCell_data()`.
   + "cores" is the number of threads.
 
-&nbsp;
 &nbsp;
 # Installation
 
@@ -40,7 +32,6 @@ devtools::install_github("davpinto/fastknn")
 devtools::install_github("WangX-Lab/PreCanCell")
 ```
 
-&nbsp;
 &nbsp;
 # Examples
 
@@ -81,7 +72,7 @@ testdata[1:5,1:5]
 `cores` represents the number of cores to use for parallel execution. 
 &nbsp;
 ```
-results <- PreCanCell_classifier(testdata, 2)
+results <- PreCanCell_classifier(testdata, cores = 2)
 head(results)
 ```
 
@@ -96,9 +87,8 @@ head(results)
 
 
 # Vignettes
-[Predicting malignant and non-malignant cells from single-cell transcriptomes](https://wangx-lab.github.io/PreCanCell/docs/index.html))
+[Predicting malignant and non-malignant cells from single-cell transcriptomes](https://wangx-lab.github.io/PreCanCell/docs/index.html)
 
-&nbsp;
 &nbsp;
 # Contact
 
