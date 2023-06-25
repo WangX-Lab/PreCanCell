@@ -30,8 +30,8 @@ PreCanCell first identified the differentially expressed genes (DEGs) between ma
 ```
 if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools")
-    
-devtools::install_github("WangX-Lab/PreCanCell")
+
+devtools::install_github("davpinto/fastknn")
 ```
 
 - Finally, users can install the released version of `PreCanCell` with:
