@@ -2,7 +2,7 @@
 
 A simple and effective ensemble learning algorithm for predicting cancer and non-cancer cells from single-cell transcriptomes.
 
-<img width="1022" alt="image" src="https://github.com/WangX-Lab/PreCanCell/blob/master/vignettes/PreCanCell_overview.png">
+<img width="1022" alt="image" src="https://github.com/WangX-Lab/PreCanCell/docs/PreCanCell_overview.png">
 
 &nbsp;
 &nbsp;
@@ -96,7 +96,7 @@ head(results)
 
 
 # Vignettes
-[Predicting malignant and non-malignant cells from single-cell transcriptomes](https://wangx-lab.github.io/PreCanCell/)
+[Predicting malignant and non-malignant cells from single-cell transcriptomes](https://wangx-lab.github.io/PreCanCell/docs/index.html))
 
 &nbsp;
 &nbsp;
