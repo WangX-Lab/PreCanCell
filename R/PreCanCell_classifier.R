@@ -29,7 +29,7 @@
 PreCanCell_classifier <- function(testdata, cores) {
 
   ## Check arguments
-  if (missing(testdata) || !class(testdata) %in% c("matrix", "data.frame") || dim(testdata)[2] < 100)
+  if (missing(testdata) || !any(class(testdata) %in% c("matrix", "data.frame")) || dim(testdata)[2] < 100)
     stop("'testdata' is missing or incorrect")
 
   ## Predict malignant and non-malignant cells
