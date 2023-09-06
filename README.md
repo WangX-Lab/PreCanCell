@@ -7,7 +7,7 @@
 &nbsp;
 # Details
 
-+ The function `PreCanCell_data()` is used to data preprocessing. Its input should be normalized expression matrix with rownames being genes and colnames being cells. The input data can be any library-depth normalization (e.g. TPM, CPM), but not log-transformed.
++ The function `PreCanCell_data()` is used to data preprocessing. Its input should be normalized expression matrix with rownames being genes and colnames being cells. The input data can be any library-depth normalization (e.g. TPM, CPM).
 + The function `PreCanCell_classifier()` is used to identify malignant and non-malignant cells from single-cell transcriptomes, containing 2 parameters: testdata and cores.
   + "testdata" is a output matrix of the function `PreCanCell_data()`.
   + "cores" is the number of threads.
